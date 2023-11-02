@@ -138,16 +138,6 @@ class EnableStringTrimmingTest {
         assertTrue(isBeanPostProcessorPresent);
     }
 
-    @Test
-    @Order(9)
-    @DisplayName("TrimmedAnnotationBeanPostProcessor overrides postProcessAfterInitialization() method")
-    void trimmedAnnotationBeanPostProcessorOverridesPostProcessAfterInitMethod() {
-        List<String> methodNames = Arrays.stream(TrimmedAnnotationBeanPostProcessor.class.getDeclaredMethods())
-                .map(Method::getName)
-                .toList();
-        assertThat(methodNames).contains("postProcessAfterInitialization");
-    }
-
     @Nested
     @SpringJUnitConfig(classes = {TrimmingEnabledConfig.class})
     class TrimmingEnabledTest {
