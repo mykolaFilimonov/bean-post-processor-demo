@@ -128,6 +128,16 @@ class EnableStringTrimmingTest {
         assertTrue(beanAnnotation.isPresent());
     }
 
+    @Test
+    @Order(8)
+    @DisplayName("TrimmedAnnotationBeanPostProcessor implements BeanPostProcessor interface")
+    void trimmedAnnotationBeanPostProcessorImplementsBeanPostProcessor() {
+        boolean isBeanPostProcessorPresent = Arrays.stream(TrimmedAnnotationBeanPostProcessor.class.getInterfaces())
+                .anyMatch(i -> i.isAssignableFrom(
+                        BeanPostProcessor.class));
+        assertTrue(isBeanPostProcessorPresent);
+    }
+
     @Nested
     @SpringJUnitConfig(classes = {TrimmingEnabledConfig.class})
     class TrimmingEnabledTest {
